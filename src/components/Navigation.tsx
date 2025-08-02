@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -124,6 +125,7 @@ export const Navigation = () => {
               <Search className="h-4 w-4 mr-2" />
               Search
             </Button>
+            <ThemeToggle />
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
