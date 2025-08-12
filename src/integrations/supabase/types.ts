@@ -14,16 +14,147 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bases: {
+        Row: {
+          average_rating: number | null
+          base_type: Database["public"]["Enums"]["base_type"]
+          created_at: string | null
+          description: string | null
+          download_count: number | null
+          hall_level: number
+          hall_type: Database["public"]["Enums"]["hall_type"]
+          id: string
+          image_url: string | null
+          layout_link: string
+          name: string
+          rating_count: number | null
+          stats: string | null
+          tips: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          average_rating?: number | null
+          base_type: Database["public"]["Enums"]["base_type"]
+          created_at?: string | null
+          description?: string | null
+          download_count?: number | null
+          hall_level: number
+          hall_type: Database["public"]["Enums"]["hall_type"]
+          id?: string
+          image_url?: string | null
+          layout_link: string
+          name: string
+          rating_count?: number | null
+          stats?: string | null
+          tips?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          average_rating?: number | null
+          base_type?: Database["public"]["Enums"]["base_type"]
+          created_at?: string | null
+          description?: string | null
+          download_count?: number | null
+          hall_level?: number
+          hall_type?: Database["public"]["Enums"]["hall_type"]
+          id?: string
+          image_url?: string | null
+          layout_link?: string
+          name?: string
+          rating_count?: number | null
+          stats?: string | null
+          tips?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      downloads: {
+        Row: {
+          base_id: string | null
+          created_at: string | null
+          id: string
+          ip_address: unknown | null
+          user_agent: string | null
+        }
+        Insert: {
+          base_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          user_agent?: string | null
+        }
+        Update: {
+          base_id?: string | null
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "downloads_base_id_fkey"
+            columns: ["base_id"]
+            isOneToOne: false
+            referencedRelation: "bases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ratings: {
+        Row: {
+          base_id: string | null
+          browser_fingerprint: string
+          created_at: string | null
+          id: string
+          ip_address: unknown
+          rating: number
+        }
+        Insert: {
+          base_id?: string | null
+          browser_fingerprint: string
+          created_at?: string | null
+          id?: string
+          ip_address: unknown
+          rating: number
+        }
+        Update: {
+          base_id?: string | null
+          browser_fingerprint?: string
+          created_at?: string | null
+          id?: string
+          ip_address?: unknown
+          rating?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ratings_base_id_fkey"
+            columns: ["base_id"]
+            isOneToOne: false
+            referencedRelation: "bases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_download_count: {
+        Args: { base_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
-      [_ in never]: never
+      base_type:
+        | "WAR"
+        | "FARMING"
+        | "HYBRID"
+        | "CWL"
+        | "TROPHY"
+        | "FUN"
+        | "PROGRESS_BASE"
+      hall_type: "TH" | "BH"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +281,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      base_type: [
+        "WAR",
+        "FARMING",
+        "HYBRID",
+        "CWL",
+        "TROPHY",
+        "FUN",
+        "PROGRESS_BASE",
+      ],
+      hall_type: ["TH", "BH"],
+    },
   },
 } as const
