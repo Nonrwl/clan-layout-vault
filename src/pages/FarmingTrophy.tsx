@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { BaseCard } from "@/components/BaseCard";
+import { LegacyBaseCard } from "@/components/LegacyBaseCard";
 import { SearchFilters } from "@/components/SearchFilters";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -147,7 +147,7 @@ const FarmingTrophy = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {farmingBases.map((base) => (
-                  <BaseCard key={base.id} {...base} />
+            <LegacyBaseCard key={base.id} {...base} />
                 ))}
               </div>
 
@@ -202,7 +202,7 @@ const FarmingTrophy = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {trophyBases.map((base) => (
-                  <BaseCard key={base.id} {...base} />
+                  <LegacyBaseCard key={base.id} {...base} />
                 ))}
               </div>
 
