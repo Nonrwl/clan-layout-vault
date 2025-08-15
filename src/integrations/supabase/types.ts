@@ -7,13 +7,67 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.12 (cd3cf9e)"
   }
   public: {
     Tables: {
+      admin_login_attempts: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: unknown
+          success: boolean
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address: unknown
+          success?: boolean
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: unknown
+          success?: boolean
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      admin_users: {
+        Row: {
+          allowed_ips: string[] | null
+          created_at: string
+          id: string
+          is_active: boolean
+          last_login_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          allowed_ips?: string[] | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          allowed_ips?: string[] | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_login_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       bases: {
         Row: {
           average_rating: number | null
@@ -140,6 +194,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_old_login_attempts: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       increment_download_count: {
         Args: { base_id: string }
         Returns: undefined
